@@ -38,6 +38,12 @@ app = FastAPI(title="Hospital Management API", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
+    allow_origins=[
+        "http://localhost:3000",              # dev
+        "http://localhost:5173",              # sometimes vite uses this
+        "*"                                   # temporary wildcard – works for testing
+        # After Vercel deploy: replace * with your real Vercel domain e.g. "https://your-app-name.vercel.app"
+    ],
     allow_origins=["*"], allow_methods=["*"], allow_headers=["*"],allow_credentials=True,
 )
 
