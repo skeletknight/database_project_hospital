@@ -4,9 +4,11 @@ import os
 
 # Updated Database URL for Hospital System
 # Ensure you have created this database in PostgreSQL or rename 'hospital_db' to your existing DB name
-SQLALCHEMY_DATABASE_URL = "postgresql://postgres:12345678@127.0.0.1:5432/hospital_db"
+DATABASE_URL = os.getenv("DATABASE_URL")  # This pulls from Railway env
+if not DATABASE_URL:
+    raise ValueError("DATABASE_URL environment variable not set")
 
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
+engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
