@@ -39,12 +39,13 @@ app = FastAPI(title="Hospital Management API", lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:3000",              # dev
-        "http://localhost:5173",              # sometimes vite uses this
-        "*"                                   # temporary wildcard – works for testing
-        # After Vercel deploy: replace * with your real Vercel domain e.g. "https://your-app-name.vercel.app"
+        "https://database-project-hospital-9yvw-qjr1om1p7-skeletknights-projects.vercel.app",
+        "http://localhost:3000",          # for your local Next.js dev
+        "*"                               # temporary wildcard for testing (remove in prod)
     ],
-    allow_origins=["*"], allow_methods=["*"], allow_headers=["*"],allow_credentials=True,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 @app.websocket("/ws")
