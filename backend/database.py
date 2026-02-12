@@ -4,7 +4,7 @@ import os
 
 # Updated Database URL for Hospital System
 # Ensure you have created this database in PostgreSQL or rename 'hospital_db' to your existing DB name
-DATABASE_URL = os.getenv("DATABASE_URL")  # This pulls from Railway env
+DATABASE_URL = os.getenv("postgresql://postgres:S@gharelm1396@db.wmlbkpftrfvbwssqfljt.supabase.co:5432/postgres")  # This pulls from Railway env
 if not DATABASE_URL:
     raise ValueError("DATABASE_URL environment variable not set")
 
