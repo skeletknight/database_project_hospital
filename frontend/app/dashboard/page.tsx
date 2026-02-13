@@ -14,7 +14,7 @@ export default function Dashboard() {
   const [selectedDoc, setSelectedDoc] = useState("");
   const [date, setDate] = useState("");
   
-  const API_URL = "http://127.0.0.1:8000";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000';
 
   const refreshData = async () => {
     if(!user) return;

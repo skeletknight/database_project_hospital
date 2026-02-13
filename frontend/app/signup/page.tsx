@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 export default function Signup() {
   const [form, setForm] = useState({ first_name: '', last_name: '', national_id: '', password: '', age: '' });
   const router = useRouter();
-  const API_URL = "http://127.0.0.1:8000";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000';
 
   const register = async () => {
     try {
