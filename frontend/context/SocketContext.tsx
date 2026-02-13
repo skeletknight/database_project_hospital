@@ -13,8 +13,13 @@ export function SocketProvider({ children }: { children: ReactNode }) {
   const [lastDataUpdate, setLastDataUpdate] = useState<any | null>(null);
 
   useEffect(() => {
-    // Connect to FastAPI WebSocket
-    const ws = new WebSocket("ws://127.0.0.1:8000/ws");
+    // Use env var – fallback to local for development
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000';
+
+    // Convert http → ws, https → wss
+    const WS_URL = API_URL.replace(/^http/, 'ws');
+
+    const ws = new WebSocket(`${WS_URL}/ws`);
 
     ws.onopen = () => {
       console.log("MediCore Socket Connected");
