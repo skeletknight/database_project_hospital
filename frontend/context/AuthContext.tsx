@@ -21,7 +21,9 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
-  const API_URL = "http://127.0.0.1:8000";
+
+  // ← This is the key change
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000';
 
   useEffect(() => {
     const stored = localStorage.getItem('hms_user');
@@ -52,4 +54,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   );
 }
 
-export function useAuth() { return useContext(AuthContext)!; }
+export function useAuth() {
+  return useContext(AuthContext)!;
+}
