@@ -35,7 +35,7 @@ class Patient(Base):
     allergies = Column(Text)
     chronic_diseases = Column(Text)
     notes = Column(Text)
-    #password = Column(String(100))
+    password = Column(String(100))
 
     appointments = relationship("Appointment", back_populates="patient")
     admissions = relationship("Admission", back_populates="patient")
